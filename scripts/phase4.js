@@ -16,7 +16,8 @@ function updateSanity(amount) {
 function openBox() {
     document.getElementById("box-content").innerHTML = "<span class='key'>🗝️</span>";
     document.getElementById("message").textContent = "You open the box and find a small silver key...";
-   
+    
+    window.location.href = "phase5.html"
     // Stop the pulsating effect if sanity is restored
     document.getElementById("box").classList.remove("pulsate");
 }
