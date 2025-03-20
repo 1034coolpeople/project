@@ -260,6 +260,7 @@ function showText() {
      }
  }
 
+ window.alert("you win");
 
  typeWriter();
 }
