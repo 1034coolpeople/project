@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function changePhase(){
-      window.alert("Change to Phase 2.");
+      window.location.href = "phase2.html"
     }
 
     function resistKey(){

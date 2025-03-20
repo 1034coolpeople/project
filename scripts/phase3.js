@@ -203,6 +203,7 @@ document.addEventListener("DOMContentLoaded", function() {
       if (inputCode === correctCode) {
         display.textContent = "Safe Opened!";
         keypad.querySelectorAll("button").forEach(btn => btn.disabled = true);
+        window.location.href = "phase4.html"
       } else {
         wrongAttempt();
       }

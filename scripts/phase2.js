@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function() {
     btnAttemptDoor.addEventListener("click", function() {
       if (examinedRoom) {
         doorDisplay.textContent = "Door Opened!";
-        btnAttemptDoor.disabled = true;
+        window.location.href = "phase3.html"
       } else {
         wrongAttempt();
       }
