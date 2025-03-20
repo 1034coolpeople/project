@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 4: The Box Inside the Safe</title>
+    <link rel="stylesheet" href="styles/phase4.css">
+</head>
+<body>
+    <div class="overlay"></div> <!-- Dark overlay for cinematic effect -->
+   
+    <h1>The Safe is Finally Open...</h1>
+    <p>There's a small box inside. What will you do?</p>
+
+
+    <div id="box" class="box">
+        <div id="box-content" class="box-content">
+            <span class="lock">🔒</span> <!-- Locked icon initially -->
+        </div>
+    </div>
+
+
+    <div class="button-container">
+        <button onclick="openBox()">Open the Box</button>
+        <button onclick="hesitate()">Hesitate</button>
+    </div>
+
+
+    <p id="message"></p>
+    <p>Sanity: <span id="sanity">100</span>%</p>
+
+
+    <script src="scripts/phase4.js"></script>
+</body>
+</html>

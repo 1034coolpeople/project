@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Phase 3: The Safe Puzzle</title>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/phase3.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Narrative Scene -->
+    <div id="scene">
+      <h1>The Hidden Safe</h1>
+      <p>You see an old painting on the wall. Its title reads: <em>"We all forget in the end."</em></p>
+      <p>Behind the painting, you sense something hidden... perhaps a small metal safe with a keypad.</p>
+      <div class="choices">
+        <button id="btn-start-guessing">Start Guessing</button>
+        <button id="btn-examine-painting">Examine Painting</button>
+      </div>
+    </div>
+
+    <!-- Painting Section (shows the back of the painting with hints) -->
+    <div id="painting-section" style="display: none;">
+      <h2>Back of the Painting</h2>
+      <p>The back reveals scratched numbers:</p>
+      <div class="hints">
+        <div class="hint">9/3</div>
+        <div class="hint">1/1</div>
+        <div class="hint">10-3</div>
+      </div>
+      <button id="btn-return-safe">Return to Safe</button>
+    </div>
+
+    <!-- Safe Puzzle Section -->
+    <div id="safe-section" style="display: none;">
+      <div class="sanity-meter">
+        <label>Sanity: <span id="sanity-value">80</span>%</label>
+        <div id="sanity-bar">
+          <div id="sanity-fill"></div>
+        </div>
+      </div>
+      <div class="safe-container">
+        <div id="display" class="display">Enter Code</div>
+        <div class="keypad" id="keypad">
+          <button class="key" data-key="1">1</button>
+          <button class="key" data-key="2">2</button>
+          <button class="key" data-key="3">3</button>
+          <button class="key" data-key="4">4</button>
+          <button class="key" data-key="5">5</button>
+          <button class="key" data-key="6">6</button>
+          <button class="key" data-key="7">7</button>
+          <button class="key" data-key="8">8</button>
+          <button class="key" data-key="9">9</button>
+          <button class="key" data-key="0">0</button>
+          <button id="clear" class="key special">Clear</button>
+          <button id="enter" class="key special">Enter</button>
+        </div>
+      </div>
+      <button id="btn-view-painting">View Painting</button>
+    </div>
+
+    <!-- Low sanity warning (initially hidden) -->
+    <div id="warning" class="warning" style="display:none;"></div>
+  </div>
+  <!-- Splotches container covers entire viewport -->
+  <div id="splotches-container"></div>
+  <script src="scripts/phase3.js"></script>
+</body>
+</html>

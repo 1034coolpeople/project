@@ -1,0 +1,135 @@
+/* General Styles */
+body {
+    font-family: 'Cinzel', serif;
+    color: #ff0404; /* Blood-red text */
+    text-align: center;
+    padding: 20px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                      url('https://wallpapers.com/images/hd/somber-night-in-a-forest-npneemnvzgm7ky9z.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* Cinematic Overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+
+/* Title */
+h1 {
+    font-weight: bold;
+    font-size: 45px;
+    text-shadow: 3px 3px 10px black;
+    margin-bottom: 20px;
+}
+
+
+/* Box */
+.box {
+    width: 320px;
+    height: 180px;
+    background-color: rgba(30, 30, 30, 0.9);
+    margin: 30px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid white;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+}
+
+
+.box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.9);
+}
+
+
+/* Box Content */
+.box-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+
+.lock {
+    font-size: 70px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+
+.key {
+    font-size: 50px;
+    font-weight: bold;
+    color: #ffdf00; /* Golden key */
+    text-shadow: 2px 2px 5px black;
+}
+
+
+/* Buttons */
+.button-container {
+    margin-top: 20px;
+}
+
+
+button {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 12px 25px;
+    margin: 15px;
+    cursor: pointer;
+    background-color: #222;
+    color: white;
+    border: 3px solid white;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+
+button:hover {
+    background-color: red;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px red;
+}
+
+
+/* Pulsating Effect for Low Sanity */
+.pulsate {
+    animation: pulse 1s infinite alternate;
+}
+
+
+@keyframes pulse {
+    0% { transform: scale(1); background: red; }
+    100% { transform: scale(1.1); background: darkred; }
+}
+
+
+/* Messages */
+p {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+#sanity {
+    font-size: 20px;
+    font-weight: bold;
+}

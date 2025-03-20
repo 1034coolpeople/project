@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Flashlight Game</title>
+   <link rel="stylesheet" href="styles/phase5.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+   <div class="game-container">
+       <div class="door-container" id="box">
+           <button id="unlockBtn">Unlock</button>
+       </div>
+      
+       <div class="game-scene" id="gameScene">
+           <div class="flashlight-item" id="flashlightItem">
+           </div>
+           <div class="light-overlay" id="lightOverlay"></div>
+       </div>
+      
+       <div class="inventory-panel">
+           <h2>Inventory</h2>
+           <div class="inventory-items" id="inventoryItems">
+               <!-- Items will be added here dynamically -->
+           </div>
+          
+           <div class="brightness-meter-container" id="brightnessMeterContainer">
+               <h3>Brightness: <span id="brightnessPercentage">0%</span></h3>
+               <div class="brightness-meter">
+                   <div class="brightness-level" id="brightnessLevel"></div>
+               </div>
+           </div>
+       </div>
+   </div>
+  
+   <div id="text" style="display: none;"></div>
+  
+   <script src="scripts/phase5.js"></script>
+</body>
+</html>

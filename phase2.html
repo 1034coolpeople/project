@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Phase 2: Attempting to Escape</title>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/phase2.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Narrative Scene -->
+    <div id="scene">
+      <h1>The Locked Door</h1>
+      <p>You hold the Rusty Key in your hand, but when you try it on the door, it doesn’t fit.</p>
+      <p>A wave of dizziness washes over you as the walls seem to close in.</p>
+      <div class="choices">
+        <button id="btn-force-key">Keep Forcing the Key</button>
+        <button id="btn-examine-room">Look Around the Room</button>
+      </div>
+    </div>
+
+
+    <!-- Room Examination Section -->
+    <div id="room-section" style="display: none;">
+      <h2>The Room</h2>
+      <p>You scan the room and notice a painting hanging slightly askew. Its title reads: <em>"We all forget in the end."</em></p>
+      <p>Scratched into the wall, you read: <em>"Don’t trust the light."</em></p>
+      <div class="choices" id="room-choices">
+        <button id="btn-look-behind-painting">Look behind the painting</button>
+        <button id="btn-continue-exploring">Continue exploring the room</button>
+      </div>
+      <!-- Extra exploration branch -->
+      <div id="explore-extra" style="display: none;">
+        <p>You cannot find anything else in the room.</p>
+        <div class="choices">
+          <button id="btn-force-key-again">Go back to the door and try forcing the key again</button>
+          <button id="btn-explore-painting">Go back and explore the painting</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Safe Discovery Section -->
+    <div id="safe-discovery-section" style="display: none;">
+      <h2>A Hidden Safe</h2>
+      <p>Behind the painting, you discover a small metal safe with a keypad. It might hold the key to your escape.</p>
+      <button id="btn-return-door-from-safe">Return to the Door</button>
+    </div>
+
+
+    <!-- Door Puzzle Section -->
+    <div id="door-section" style="display: none;">
+      <div class="sanity-meter">
+        <label>Sanity: <span id="sanity-value">80</span>%</label>
+        <div id="sanity-bar">
+          <div id="sanity-fill"></div>
+        </div>
+      </div>
+      <div class="door-container">
+        <div id="door-display" class="display">Attempt the Door</div>
+        <div class="choices">
+          <button id="btn-attempt-door">Force the Key</button>
+        </div>
+      </div>
+      <button id="btn-examine-again">Examine the Room</button>
+    </div>
+
+
+    <!-- Low sanity warning (initially hidden) -->
+    <div id="warning" class="warning" style="display:none;"></div>
+  </div>
+  <!-- Splotches container covers entire viewport -->
+  <div id="splotches-container"></div>
+  <script src="scripts/phase2.js"></script>
+</body>
+</html>

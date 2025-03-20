@@ -1,0 +1,244 @@
+body {
+  background-color: #111;
+  color: #eee;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 320px;
+  margin: 20px auto;
+  background-color: #222;
+  border: 2px solid #444;
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+}
+
+/* Scene styling */
+#scene {
+  text-align: center;
+}
+
+/* Updated Choices Styling */
+.choices {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.choices button {
+  width: 100%;
+  margin: 0;
+  padding: 12px;
+}
+
+.choices button {
+  padding: 10px 15px;
+  margin: 0 10px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #555;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+.choices button:hover {
+  background-color: #666;
+}
+
+/* Painting section styling */
+#painting-section {
+  text-align: center;
+}
+
+#painting-section .hints {
+  margin: 20px 0;
+}
+
+.hint {
+  background-color: #333;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.2em;
+}
+
+/* Sanity meter styling */
+.sanity-meter {
+  margin-bottom: 20px;
+}
+
+#sanity-bar {
+  width: 100%;
+  background-color: #444;
+  border: 1px solid #666;
+  height: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+#sanity-fill {
+  height: 100%;
+  width: 80%; /* starting at 80% sanity */
+  background-color: #4caf50;
+  transition: width 0.5s, background-color 0.5s;
+}
+
+/* Safe container & keypad styling */
+.safe-container {
+  margin-top: 20px;
+}
+
+.display {
+  background-color: #000;
+  color: #0f0;
+  font-size: 1.5em;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #0f0;
+  border-radius: 5px;
+  min-height: 40px;
+  text-align: center;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.key {
+  padding: 15px;
+  font-size: 1.2em;
+  background-color: #555;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+.key:hover {
+  background-color: #666;
+}
+
+.key.special {
+  background-color: #777;
+}
+
+/* Flash effect on wrong input */
+.flash {
+  animation: flashRed 0.3s;
+}
+
+@keyframes flashRed {
+  0% { background-color: #f00; }
+  100% { background-color: transparent; }
+}
+
+/* Low sanity effects applied only to the keypad keys */
+.low-sanity #keypad .key {
+  animation: jitter 0.5s infinite;
+}
+
+@keyframes jitter {
+  0% { transform: translate(0px, 0px); }
+  25% { transform: translate(2px, -2px); }
+  50% { transform: translate(-2px, 2px); }
+  75% { transform: translate(2px, 2px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+/* Bleeding effect when sanity is very low */
+.bleeding {
+  position: relative;
+}
+
+.bleeding::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255,0,0,0.3);
+  pointer-events: none;
+  animation: bleed 0.5s infinite;
+}
+
+@keyframes bleed {
+  0% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+  100% { opacity: 0.3; }
+}
+
+/* Low sanity warning text styling in a scary font */
+.warning {
+  position: absolute;
+  font-size: 1.5em;
+  color: #f00;
+  font-family: 'Creepster', cursive;
+  opacity: 1;
+}
+
+/* Fade-out animation for the warning */
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+.fade-out {
+  animation: fadeOut 3s forwards;
+}
+
+/* Splotches container covers entire viewport */
+#splotches-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Blood splotch styles */
+.splotch {
+  position: absolute;
+  background: rgba(255, 0, 0, 0.6);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  transform: rotate(30deg);
+  animation: splotchFade 2s ease-out forwards;
+}
+
+@keyframes splotchFade {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Style for the "View Painting" and "Return to Safe" buttons */
+#btn-view-painting, #btn-return-safe {
+  margin-top: 20px;
+  padding: 10px 15px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #555;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  transition: background-color 0.3s;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#btn-view-painting:hover, #btn-return-safe:hover {
+  background-color: #666;
+}

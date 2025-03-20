@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Phase 1: Waking Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/phase1.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Narrative Scene -->
+    <div id="scene">
+      <h1>Waking Up</h1>
+      <p>You feel the world melting. Everything is shifting. You wake up, and all you see… Darkness. Shapes. Shadows.</p>
+      <p>A dim, flickering light. Your head pounds. The walls—wrong. Uneven. Where are you?</p>
+      <p>You're on the floor, confused.</p>
+      <div class="choices">
+        <button id="btn-feel">Feel around in the darkness</button>
+        <button id="btn-listen">Listen carefully</button>
+        <button id="btn-stand">Stand up</button>
+        <button id="btn-stay">Stay still</button>
+      </div>
+    </div>
+
+    <!-- Feel around in the darkness section-->
+    <div id="feel-section" style="display: none;">
+      <h2>You feel around in the darkness</h2>
+      <p>You feel something cold, metallic.</p>
+      <p>It feels like a key.</p>
+      <div class="choices">
+        <button id="btn-pick-up-key">Pick up the object</button> <!--Object glows as it is picked up-->
+        <button id="btn-go-back">Go back</button>
+      </div>
+    </div>
+
+    <!-- Listen carefully section -->
+    <div id="listen-section" style="display: none;">
+      <h2>You listen carefully</h2>
+      <!--TODO: Add voices-->
+      <p>The voices grow louder.</p>
+      <p>You feel a growing sense of uneasiness.</p>
+      <div class="choices">
+        <button id="btn-scream-back">Scream at the whispering voices</button>
+        <button id="btn-ignore-voices">Ignore the voices</button>
+      </div>
+    </div>
+
+    <!-- Stand up Section -->
+    <div id="stand-section" style="display: none;">
+      <h2>You stand up</h2>
+      <p>Your foot makes contact with a small object.</p>
+      <p>It sounds metallic.</p>
+      <div class="choices">
+        <button id="btn-pick-up-key2">Pick up the object</button>
+        <button id="btn-leave-object">Leave the object</button>
+      </div>
+    </div>
+
+    <!-- Stay still Section -->
+    <div id="stay-section" style="display: none;">
+      <h2>You remain still</h2>
+      <p>You feel a strong force pushing you up on to your feet, at the same time there's a loud <em>knock</em> coming from all around you.</p>
+      <div class="choices">
+        <button id="btn-feel2">Feel around in the darkness</button>
+        <button id="btn-listen2">Listen carefully</button>
+      </div>
+    </div>
+
+    <!-- Pick up object -->
+    <div id="pick-up-object-section" style="display: none">
+      <h2>You pick up the object</h2>
+      <p>It's cold.</p>
+      <p>Suddenly it begins glowing a bright silver colour.</p>
+      <p>It looks like a key.</p>
+      <div class="choices">
+        <button id="btn-take-key">Take the key</button>
+        <button id="btn-resist">Resist the voices telling you to take the key</button>
+      </div>
+    </div>
+
+    <!-- Low sanity warning (initially hidden) -->
+    <div id="warning" class="warning" style="display:none;"></div>
+  </div>
+  <!-- Splotches container covers entire viewport -->
+  <div id="splotches-container"></div>
+  <script src="scripts/phase1.js"></script>
+</body>
+</html>
