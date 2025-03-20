@@ -4,8 +4,6 @@ body {
     color: #ff0404; /* Blood-red text */
     text-align: center;
     padding: 20px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                      url('https://wallpapers.com/images/hd/somber-night-in-a-forest-npneemnvzgm7ky9z.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
