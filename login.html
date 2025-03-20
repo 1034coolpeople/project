@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HalluciNate - Login</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+
+    <!-- Background Effects -->
+    <div class="glow-effects"></div>
+    <div class="spiral"></div>
+    <div class="glowing-spiral"></div>
+    <div class="neon-orbs"></div> <!-- NEW: Adds glowing animated neon orbs -->
+
+    <!-- Landing Page Content -->
+    <div class="game-title">HalluciNate</div>
+
+    <!-- Login Form -->
+    <div class="player-container">
+        <h2>Login</h2>
+        <div class="player-form">
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="login()">Login</button>
+            <p>Don't have an account? <a href="register.html">Register here</a></p>
+        </div>
+    </div>
+
+    <script>
+        async function login() {
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    let response = await fetch("login.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `username=${username}&password=${password}`
+    });
+
+    let data = await response.json();
+    if (data.status === "success") {
+        localStorage.setItem("player_id", data.player_id);
+        window.location.href = "game-menu.html"; // Redirect to New Game / Load Game screen
+    } else {
+        alert("Invalid login credentials.");
+    }
+}
+
+    </script>
+
+</body>
+</html>

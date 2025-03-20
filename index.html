@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HalluciNate - Game Menu</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+
+    <!-- Background Effects -->
+    <div class="glow-effects"></div>
+    <div class="spiral"></div>
+    <div class="glowing-spiral"></div>
+    <div class="neon-orbs"></div>
+
+    <!-- Game Menu Content -->
+    <div class="game-title">HalluciNate</div>
+
+    <div class="menu-container">
+        <button id="newGameBtn" class="menu-button">Start New Game</button>
+        <button id="loadGameBtn" class="menu-button">Login</button>
+    </div>
+
+    <!-- JavaScript at END of body -->
+    <script>
+        console.log("Game Menu Loaded!"); // TEST IF SCRIPT RUNS
+
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("DOM fully loaded!"); // DEBUG
+
+            const newGameBtn = document.getElementById("newGameBtn");
+            const loadGameBtn = document.getElementById("loadGameBtn");
+
+            if (!newGameBtn || !loadGameBtn) {
+                console.error("Buttons NOT FOUND in the DOM!");
+                return;
+            }
+
+            newGameBtn.addEventListener("click", startNewGame);
+            loadGameBtn.addEventListener("click", loadGame);
+        });
+
+        function startNewGame() {
+            console.log("Start New Game clicked!"); // DEBUG CHECK
+
+            //This is temporary!!!
+            window.location.href = "phase1.html"
+            
+            let playerId = localStorage.getItem("player_id");
+            if (!playerId) {
+                alert("Error: No player logged in.");
+                return;
+            }
+
+            fetch("new-game.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `player_id=${playerId}`
+            }).then(response => response.json())
+              .then(data => {
+                if (data.status === "success") {
+                    console.log("New Game Started!");
+                    window.location.href = "gameplay.html"; // Redirect to gameplay
+                } else {
+                    alert("Error starting new game.");
+                }
+            }).catch(error => console.error("Fetch Error:", error));
+        }
+
+        function loadGame() {
+            console.log("Load Game clicked!"); // DEBUG CHECK
+
+            //This is temporary!
+            window.location.href = "login.html"
+            let playerId = localStorage.getItem("player_id");
+            if (!playerId) {
+                alert("Error: No player logged in.");
+                return;
+            }
+
+            fetch("load-game.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `player_id=${playerId}`
+            }).then(response => response.json())
+              .then(data => {
+                if (data.status === "success") {
+                    localStorage.setItem("current_room", data.current_room);
+                    console.log("Game Loaded Successfully!");
+                    window.location.href = "gameplay.html"; // Redirect to gameplay
+                } else {
+                    alert("No saved game found.");
+                }
+            }).catch(error => console.error("Fetch Error:", error));
+        }
+    </script>
+
+</body>
+</html>

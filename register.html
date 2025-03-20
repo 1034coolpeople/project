@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HalluciNate - Register</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Background Effects -->
+    <div class="glow-effects"></div>
+    <div class="spiral"></div>
+    <div class="glowing-spiral"></div>
+    <div class="neon-orbs"></div> <!-- NEW: Glowing pink/blue background -->
+
+    <!-- Register Page Content -->
+    <div class="game-title">HalluciNate</div>
+
+    <!-- Registration Form -->
+    <div class="player-container">
+        <h2>Create an Account</h2>
+        <div class="player-form">
+            <input type="text" id="new-username" placeholder="Choose a Username">
+            <input type="password" id="new-password" placeholder="Choose a Password">
+            <button onclick="register()">Register</button>
+            <p>Already have an account? <a href="index.html">Login here</a></p>
+        </div>
+    </div>
+
+    <script>
+        async function register() {
+            let username = document.getElementById("new-username").value;
+            let password = document.getElementById("new-password").value;
+
+            let response = await fetch("register.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `username=${username}&password=${password}`
+            });
+
+            let data = await response.json();
+            if (data.status === "success") {
+                alert("Account created! You can now log in.");
+                window.location.href = "index.html"; // Redirect to login
+            } else {
+                alert("Registration failed.");
+            }
+        }
+    </script>
+
+</body>
+</html>
