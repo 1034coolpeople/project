@@ -1,0 +1,358 @@
+/* General Styles *//* General Styles */
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #111;
+    color: #fff;
+    margin: 0;
+    overflow: hidden; /* Prevents scrollbars from particles */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Background Effects */
+.glow-effects, .spiral, .glowing-spiral {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+/* Spiral Animations */
+.spiral {
+    border: 5px solid rgba(0, 255, 255, 0.5);
+    animation: rotate 5s linear infinite;
+}
+
+.glowing-spiral {
+    box-shadow: 0 0 20px 20px rgba(0, 255, 255, 0.4);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* NEW: Glowing Animated Orbs (Blue/Pink Hallucination Effect) */
+.neon-orbs {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.neon-orbs::before, .neon-orbs::after {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: floatOrbs 6s infinite alternate ease-in-out;
+}
+
+/* Left Pink Glow */
+.neon-orbs::before {
+    background: radial-gradient(circle, rgba(255, 0, 255, 0.8), transparent);
+    top: 20%;
+    left: -10%;
+}
+
+/* Right Blue Glow */
+.neon-orbs::after {
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.8), transparent);
+    top: 50%;
+    right: -10%;
+}
+
+/* Floating Orbs Animation */
+@keyframes floatOrbs {
+    0% { transform: scale(1) translateY(0); }
+    100% { transform: scale(1.2) translateY(20px); }
+}
+
+/* Game Title */
+.game-title {
+    font-size: 50px;
+    text-shadow: 0 0 10px cyan, 0 0 20px cyan;
+    color: cyan;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Buttons */
+button {
+    padding: 15px 40px;
+    font-size: 20px;
+    background-color: #00FFFF;
+    color: #111;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    z-index: 1;
+    border: none;
+    text-shadow: 0 0 10px #00FFFF;
+    box-shadow: 0 0 15px #00FFFF;
+}
+
+button:hover {
+    background-color: #007BFF;
+    color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #007BFF;
+}
+
+/* Hallucination Text */
+.hallucinate {
+    font-size: 24px;
+    color: #007BFF;
+    margin-top: 20px;
+    text-shadow: 0 0 10px #007BFF;
+    position: relative;
+    z-index: 1;
+}
+
+/* Player Container (for Login & Register) */
+.player-container {
+    margin-top: 30px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    width: 60%;
+    position: relative;
+    z-index: 1;
+}
+
+/* Input Fields */
+input {
+    padding: 10px;
+    width: 80%;
+    margin-bottom: 10px;
+    border: 2px solid #00FFFF;
+    border-radius: 5px;
+    background: transparent;
+    color: cyan;
+    text-align: center;
+    font-size: 1rem;
+    text-shadow: 0 0 5px #00FFFF;
+}
+
+input::placeholder {
+    color: rgba(0, 255, 255, 0.6);
+    text-shadow: none;
+}
+
+/* Link Styling */
+a {
+    color: #00FFFF;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #007BFF;
+    text-shadow: 0 0 10px #007BFF;
+}
+
+/* Particles */
+.particle {
+    position: absolute;
+    background-color: cyan;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: fadeOut 3s ease-out forwards;
+}
+
+/* Animations */
+@keyframes fadeOut {
+    to { opacity: 0; transform: translateY(-200px); }
+}
+
+@keyframes rotate {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 20px 20px rgba(0, 255, 255, 0.4); }
+    50% { box-shadow: 0 0 30px 30px rgba(0, 255, 255, 0.7); }
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #111;
+    color: #fff;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* LOCK Button Size (Prevents Movement) */
+button {
+    width: 250px; /* LOCK width */
+    height: 50px; /* LOCK height */
+    padding: 10px; /* Fixed padding */
+    font-size: 18px;
+    background-color: #00FFFF;
+    color: #111;
+    border-radius: 10px;
+    border: 2px solid transparent; /* Ensures size doesn't change */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-shadow: 0 0 10px #00FFFF;
+    box-shadow: 0 0 15px #00FFFF;
+    display: inline-block; /* Prevents flex/grid from resizing */
+    line-height: 1; /* Prevents shifting */
+    flex-shrink: 0; /* Prevents shrinking in flex containers */
+}
+
+button:hover {
+    background-color: #007BFF;
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #007BFF;
+}
+
+/* Button Press Effect - But No Size Change */
+button:active {
+    transform: translateY(1px); /* Tiny press down effect */
+    box-shadow: 0 0 10px #007BFF;
+}
+
+/* Gameplay Section */
+.gameplay {
+    height: 85vh;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Choices Buttons */
+.choices {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.choices button {
+    width: 250px; /* LOCKED */
+    height: 50px; /* LOCKED */
+    padding: 10px;
+    font-size: 1.2rem;
+    background-color: #ff00ff;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    text-shadow: 0 0 10px #ff00ff;
+    box-shadow: 0 0 15px #ff00ff;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    flex-shrink: 0; /* Ensures no shrinking */
+}
+
+.choices button:hover {
+    background-color: #00ffff;
+    box-shadow: 0 0 20px #00ffff;
+    transform: scale(1.05);
+}
+
+.choices button:active {
+    transform: translateY(1px);
+    box-shadow: 0 0 10px #00ffff;
+}
+/* Sanity Bar - Only Decreases from Right */
+.sanity-bar-container {
+    width: 60%;
+    height: 25px;
+    background-color: #222;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ff00ff;
+    margin: auto;
+    position: relative;
+    display: flex;
+    justify-content: flex-start; /* Aligns progress bar to the left */
+    overflow: hidden;
+}
+
+.sanity-bar-progress {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to right, #ff0000, #800000);
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Low Sanity Warning */
+.low-sanity {
+    background: linear-gradient(to right, #ff0000, #ff3333) !important;
+    box-shadow: 0 0 15px red;
+}
+
+
+/* Inventory */
+.inventory {
+    font-size: 1.2rem;
+    color: #00ff88;
+    text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88;
+    max-height: 50px;
+    overflow-y: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Hallucination Text */
+.hallucination {
+    margin-top: 50px;
+    font-size: 2rem;
+    color: #00ff88;
+    text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88;
+    animation: hallucinate 1.5s infinite alternate ease-in-out;
+}
+
+/* Hallucination Animation */
+@keyframes hallucinate {
+    0% { opacity: 0.8; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Choices Buttons */
+.choices {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.choices button {
+    width: 220px;
+    height: 45px;
+    padding: 10px;
+    font-size: 1.2rem;
+    background-color: #ff00ff;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    text-shadow: 0 0 10px #ff00ff;
+    box-shadow: 0 0 15px #ff00ff;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.choices button:hover {
+    background-color: #00ffff;
+    box-shadow: 0 0 20px #00ffff;
+    transform: scale(1.05);
+}

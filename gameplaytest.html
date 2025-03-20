@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HalluciNate - Complete Gameplay</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Background Effects -->
+    <div class="glow-effects"></div>
+    <div class="spiral"></div>
+    <div class="glowing-spiral"></div>
+    <div class="neon-orbs"></div>
+
+    <!-- Sanity Bar -->
+    <div class="sanity-bar-container">
+        <div id="sanity-bar-progress" class="sanity-bar-progress"></div>
+    </div>
+
+    <!-- HUD Section -->
+    <div class="hud">
+        <div class="sanity-bar">
+            <span>Sanity: <span id="sanity">100</span>%</span>
+        </div>
+        <div class="inventory">
+            <span>Inventory: <span id="inventory-items">Empty</span></span>
+        </div>
+    </div>
+
+    <!-- Hallucination Text -->
+    <div class="hallucination">
+        <p id="hallucination-text">You feel the world shifting...</p>
+    </div>
+
+    <!-- Phase Containers -->
+    <div id="phase1" class="phase">
+        <h2>Phase 1: Waking Up</h2>
+        <p>You wake up to darkness. Shapes. Shadows. A dim, flickering light. What will you do?</p>
+        <div class="choices">
+            <button onclick="makeChoice(1)">Feel around in the darkness</button>
+            <button onclick="makeChoice(2)">Listen carefully</button>
+            <button onclick="makeChoice(3)">Stand up</button>
+            <button onclick="makeChoice(4)">Stay still</button>
+        </div>
+    </div>
+
+    <div id="phase2" class="phase" style="display: none;">
+        <h2>Phase 2: Locked Door</h2>
+        <p>The door is locked. The Rusty Key doesn't fit. You feel panic rising. What will you do?</p>
+        <div class="choices">
+            <button onclick="forceKey()">Force the Key</button>
+            <button onclick="exploreRoom()">Look Around the Room</button>
+        </div>
+    </div>
+
+    <div id="phase3" class="phase" style="display: none;">
+        <h2>Phase 3: Safe Puzzle</h2>
+        <p>You find a hidden safe behind the painting. Enter the code:</p>
+        <div id="display" class="display">Enter Code</div>
+        <div class="keypad" id="keypad">
+            <button class="key" data-key="1">1</button>
+            <button class="key" data-key="2">2</button>
+            <button class="key" data-key="3">3</button>
+            <button class="key" data-key="4">4</button>
+            <button class="key" data-key="5">5</button>
+            <button class="key" data-key="6">6</button>
+            <button class="key" data-key="7">7</button>
+            <button class="key" data-key="8">8</button>
+            <button class="key" data-key="9">9</button>
+            <button class="key" data-key="0">0</button>
+            <button id="clear" class="key special">Clear</button>
+            <button id="enter" class="key special">Enter</button>
+        </div>
+    </div>
+
+    <div id="phase4" class="phase" style="display: none;">
+        <h2>Phase 4: The Box Inside the Safe</h2>
+        <p>The safe opens to reveal a small box. What will you do?</p>
+        <div class="choices">
+            <button onclick="openBox()">Open the Box</button>
+            <button onclick="hesitate()">Hesitate</button>
+        </div>
+    </div>
+
+    <div id="phase5" class="phase" style="display: none;">
+        <h2>Phase 5: Awakening</h2>
+        <p>You hear voices. You wake up from the coma. It was all just a nightmare...</p>
+        <p id="final-message">"Nate, Nate, NATE! It's a miracle. He's awake. You've been in a coma since your car crash."</p>
+    </div>
+
+    <script src="gameplay.js"></script>
+</body>
+</html>
