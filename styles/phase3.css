@@ -1,24 +1,84 @@
+/* Base Styles */
 body {
+  font-family: 'Courier New', Courier, monospace;
   background-color: #111;
-  color: #eee;
-  font-family: Arial, sans-serif;
+  color: #00FFFF;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  height: 100vh;
+  text-align: center;
 }
 
+/* Background Effects - Only edge effects, no central elements */
+.neon-orbs {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -2;
+}
+
+.neon-orbs::before, .neon-orbs::after {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: floatOrbs 6s infinite alternate ease-in-out;
+}
+
+/* Left Pink Glow */
+.neon-orbs::before {
+  background: radial-gradient(circle, rgba(255, 0, 255, 0.8), transparent);
+  top: 20%;
+  left: -10%;
+}
+
+/* Right Blue Glow */
+.neon-orbs::after {
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.8), transparent);
+  top: 50%;
+  right: -10%;
+}
+
+/* Main Container - Preserve dimensions but update styling */
 .container {
   width: 320px;
   margin: 20px auto;
-  background-color: #222;
-  border: 2px solid #444;
+  background-color: rgba(20, 20, 30, 0.8);
+  border: 2px solid #00FFFF;
+  box-shadow: 0 0 15px #00FFFF;
   border-radius: 10px;
   padding: 20px;
   position: relative;
+  z-index: 1;
 }
 
 /* Scene styling */
 #scene {
   text-align: center;
+}
+
+/* Headings */
+h1, h2 {
+  color: #00FFFF;
+  text-shadow: 0 0 10px #00FFFF, 0 0 15px #00FFFF;
+  margin-bottom: 20px;
+}
+
+/* Regular text */
+p {
+  color: #00FFFF;
+  text-shadow: 0 0 5px #00FFFF;
+  font-size: 18px;
+}
+
+em {
+  color: #ff00ff;
+  text-shadow: 0 0 8px #ff00ff;
+  font-style: italic;
 }
 
 /* Updated Choices Styling */
@@ -27,28 +87,30 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-items: center;
 }
 
 .choices button {
   width: 100%;
+  max-width: 250px;
   margin: 0;
   padding: 12px;
-}
-
-.choices button {
-  padding: 10px 15px;
-  margin: 0 10px;
   font-size: 1em;
-  cursor: pointer;
-  background-color: #555;
+  background-color: #ff00ff; /* Pink background */
+  color: white;
   border: none;
-  border-radius: 5px;
-  color: #fff;
-  transition: background-color 0.3s;
+  border-radius: 8px;
+  cursor: pointer;
+  text-shadow: 0 0 10px #ff00ff;
+  box-shadow: 0 0 15px #ff00ff;
+  transition: all 0.3s ease;
 }
 
 .choices button:hover {
-  background-color: #666;
+  background-color: #00FFFF; /* Cyan on hover */
+  color: #111;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00FFFF;
 }
 
 /* Painting section styling */
@@ -58,55 +120,72 @@ body {
 
 #painting-section .hints {
   margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .hint {
-  background-color: #333;
+  background-color: rgba(30, 30, 40, 0.8);
   margin: 5px 0;
   padding: 10px;
   border-radius: 5px;
   font-size: 1.2em;
+  border: 1px solid #00FFFF;
+  color: #00FFFF;
+  text-shadow: 0 0 5px #00FFFF;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
 }
 
-/* Sanity meter styling */
+/* Sanity meter styling - Cyberpunk theme */
 .sanity-meter {
   margin-bottom: 20px;
 }
 
+.sanity-meter label {
+  color: #00ff88; /* Neon green */
+  text-shadow: 0 0 8px #00ff88;
+  font-size: 18px;
+}
+
 #sanity-bar {
   width: 100%;
-  background-color: #444;
-  border: 1px solid #666;
+  background-color: #222;
+  border: 1px solid #00FFFF;
   height: 20px;
   border-radius: 5px;
   overflow: hidden;
   margin-top: 5px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 
 #sanity-fill {
   height: 100%;
   width: 80%; /* starting at 80% sanity */
-  background-color: #4caf50;
+  background: linear-gradient(to right, #00ff88, #00FFFF);
   transition: width 0.5s, background-color 0.5s;
 }
 
-/* Safe container & keypad styling */
+/* Safe container & keypad styling - PRESERVE LAYOUT */
 .safe-container {
   margin-top: 20px;
 }
 
 .display {
   background-color: #000;
-  color: #0f0;
+  color: #00FFFF; /* Changed from green to cyan */
   font-size: 1.5em;
   padding: 10px;
   margin-bottom: 10px;
-  border: 2px solid #0f0;
+  border: 2px solid #00FFFF;
   border-radius: 5px;
   min-height: 40px;
   text-align: center;
+  box-shadow: 0 0 10px #00FFFF;
+  text-shadow: 0 0 5px #00FFFF;
 }
 
+/* IMPORTANT: Preserve keypad grid layout */
 .keypad {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -116,20 +195,35 @@ body {
 .key {
   padding: 15px;
   font-size: 1.2em;
-  background-color: #555;
-  border: none;
+  background-color: #333;
+  color: #00FFFF;
+  border: 2px solid #00FFFF;
   border-radius: 5px;
   cursor: pointer;
-  color: #fff;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px #00FFFF;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
 }
 
 .key:hover {
-  background-color: #666;
+  background-color: #00FFFF;
+  color: #111;
+  box-shadow: 0 0 15px #00FFFF;
+  transform: scale(1.05);
 }
 
 .key.special {
-  background-color: #777;
+  background-color: rgba(255, 0, 255, 0.2);
+  border-color: #ff00ff;
+  color: #ff00ff;
+  text-shadow: 0 0 5px #ff00ff;
+  box-shadow: 0 0 8px rgba(255, 0, 255, 0.4);
+}
+
+.key.special:hover {
+  background-color: #ff00ff;
+  color: white;
+  box-shadow: 0 0 15px #ff00ff;
 }
 
 /* Flash effect on wrong input */
@@ -138,13 +232,15 @@ body {
 }
 
 @keyframes flashRed {
-  0% { background-color: #f00; }
+  0% { background-color: #f00; box-shadow: 0 0 20px #f00; }
   100% { background-color: transparent; }
 }
 
-/* Low sanity effects applied only to the keypad keys */
+/* Low sanity effects applied only to the keypad keys - PRESERVE FUNCTIONALITY */
 .low-sanity #keypad .key {
   animation: jitter 0.5s infinite;
+  border-color: #ff3333;
+  text-shadow: 0 0 8px #ff3333;
 }
 
 @keyframes jitter {
@@ -170,6 +266,7 @@ body {
   background: rgba(255,0,0,0.3);
   pointer-events: none;
   animation: bleed 0.5s infinite;
+  border-radius: 10px;
 }
 
 @keyframes bleed {
@@ -178,13 +275,25 @@ body {
   100% { opacity: 0.3; }
 }
 
-/* Low sanity warning text styling in a scary font */
+/* Low sanity warning text styling with cyberpunk glitch effect */
 .warning {
   position: absolute;
-  font-size: 1.5em;
-  color: #f00;
+  font-size: 1.8em;
+  color: #ff3333;
   font-family: 'Creepster', cursive;
+  text-shadow: 0 0 10px #ff3333, 2px 0 0 rgba(255,0,255,0.7), -2px 0 0 rgba(0,255,255,0.7);
   opacity: 1;
+  z-index: 10;
+  animation: glitch 0.3s infinite alternate;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
 }
 
 /* Fade-out animation for the warning */
@@ -192,6 +301,7 @@ body {
   from { opacity: 1; }
   to { opacity: 0; }
 }
+
 .fade-out {
   animation: fadeOut 3s forwards;
 }
@@ -207,7 +317,7 @@ body {
   z-index: 1000;
 }
 
-/* Blood splotch styles */
+/* Blood splotch styles - enhanced with neon effect */
 .splotch {
   position: absolute;
   background: rgba(255, 0, 0, 0.6);
@@ -216,6 +326,8 @@ body {
   height: 50px;
   transform: rotate(30deg);
   animation: splotchFade 2s ease-out forwards;
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
+  mix-blend-mode: screen;
 }
 
 @keyframes splotchFade {
@@ -229,16 +341,54 @@ body {
   padding: 10px 15px;
   font-size: 1em;
   cursor: pointer;
-  background-color: #555;
+  background-color: #00FFFF;
+  color: #111;
   border: none;
-  border-radius: 5px;
-  color: #fff;
-  transition: background-color 0.3s;
+  border-radius: 8px;
+  transition: all 0.3s ease;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 15px #00FFFF;
 }
 
 #btn-view-painting:hover, #btn-return-safe:hover {
-  background-color: #666;
+  background-color: #ff00ff;
+  color: white;
+  box-shadow: 0 0 20px #ff00ff;
+  transform: scale(1.05);
+}
+
+/* Floating Orbs Animation */
+@keyframes floatOrbs {
+  0% { transform: scale(1) translateY(0); }
+  100% { transform: scale(1.2) translateY(20px); }
+}
+
+/* Particles for extra atmosphere */
+.particle {
+  position: absolute;
+  background-color: cyan;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: particleFade 3s ease-out forwards;
+  z-index: 0;
+}
+
+@keyframes particleFade {
+  to { opacity: 0; transform: translateY(-200px); }
+}
+
+/* Add subtle edge shadow for depth */
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.3);
+  border-radius: 10px;
+  pointer-events: none;
 }

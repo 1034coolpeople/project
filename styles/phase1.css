@@ -1,250 +1,317 @@
-/* style.css */
+/* Base Styles */
 body {
-    background-color: #111;
-    color: #eee;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #111;
+  color: #00FFFF; /* Cyan text color */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Background Effects - Only edge orbs, avoiding central elements */
+.neon-orbs {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -2;
+}
+
+.neon-orbs::before, .neon-orbs::after {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: floatOrbs 6s infinite alternate ease-in-out;
+}
+
+/* Left Pink Glow */
+.neon-orbs::before {
+  background: radial-gradient(circle, rgba(255, 0, 255, 0.8), transparent);
+  top: 20%;
+  left: -10%;
+}
+
+/* Right Blue Glow */
+.neon-orbs::after {
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.8), transparent);
+  top: 50%;
+  right: -10%;
+}
+
+/* Ensure all divs are centered - from original phase1.css */
 div {
   text-align: center;
 }
-  
-  .container {
-    width: 320px;
-    margin: 20px auto;
-    background-color: #222;
-    border: 2px solid #444;
-    border-radius: 10px;
-    padding: 20px;
-    position: relative;
-    opacity: 0.1;
-    animation: fadeIn 3s ease-in-out forwards;
-  }
-  
-  /* Scene styling */
-  #scene {
-    text-align: center;
-  }
-  
-  .choices {
-    margin-top: 20px;
-  }
-  
-  .choices button {
-    padding: 10px 15px;
-    margin: 0 10px;
-    font-size: 1em;
-    cursor: pointer;
-    background-color: #555;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    transition: background-color 0.3s;
-  }
-  
-  .choices button:hover {
-    background-color: #666;
-  }
-  
-  /* Painting section styling */
-  #painting-section {
-    text-align: center;
-  }
-  
-  #painting-section .hints {
-    margin: 20px 0;
-  }
-  
-  .hint {
-    background-color: #333;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 1.2em;
-  }
-  
-  /* Sanity meter styling */
-  .sanity-meter {
-    margin-bottom: 20px;
-  }
-  
-  #sanity-bar {
-    width: 100%;
-    background-color: #444;
-    border: 1px solid #666;
-    height: 20px;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-top: 5px;
-  }
-  
-  #sanity-fill {
-    height: 100%;
-    width: 80%; /* starting at 80% sanity */
-    background-color: #4caf50;
-    transition: width 0.5s, background-color 0.5s;
-  }
-  
-  /* Safe container & keypad styling */
-  .safe-container {
-    margin-top: 20px;
-  }
-  
-  .display {
-    background-color: #000;
-    color: #0f0;
-    font-size: 1.5em;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 2px solid #0f0;
-    border-radius: 5px;
-    min-height: 40px;
-    text-align: center;
-  }
-  
-  .keypad {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-  }
-  
-  .key {
-    padding: 15px;
-    font-size: 1.2em;
-    background-color: #555;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #fff;
-    transition: background-color 0.3s;
-  }
-  
-  .key:hover {
-    background-color: #666;
-  }
-  
-  .key.special {
-    background-color: #777;
-  }
-  
-  /* Flash effect on wrong input */
-  .flash {
-    animation: flashRed 0.3s;
-  }
 
-  @keyframes fadeIn {
-    from {
-        opacity: 0.05;
-    }
-    to {
-        opacity: 1;
-    }
-  }
-  
-  @keyframes flashRed {
-    0% { background-color: #f00; }
-    100% { background-color: transparent; }
-  }
-  
-  /* Low sanity effects applied only to the keypad keys */
-  .low-sanity #keypad .key {
-    animation: jitter 0.5s infinite;
-  }
-  
-  @keyframes jitter {
-    0% { transform: translate(0px, 0px); }
-    25% { transform: translate(2px, -2px); }
-    50% { transform: translate(-2px, 2px); }
-    75% { transform: translate(2px, 2px); }
-    100% { transform: translate(0px, 0px); }
-  }
-  
-  /* Bleeding effect when sanity is very low */
-  .bleeding {
-    position: relative;
-  }
-  
-  .bleeding::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255,0,0,0.3);
-    pointer-events: none;
-    animation: bleed 0.5s infinite;
-  }
-  
-  @keyframes bleed {
-    0% { opacity: 0.3; }
-    50% { opacity: 0.6; }
-    100% { opacity: 0.3; }
-  }
-  
-  /* Low sanity warning text styling in a scary font */
-  .warning {
-    position: absolute;
-    font-size: 1.5em;
-    color: #f00;
-    font-family: 'Creepster', cursive;
-    opacity: 1;
-  }
-  
-  /* Fade-out animation for the warning */
-  @keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-  }
-  .fade-out {
-    animation: fadeOut 3s forwards;
-  }
-  
-  /* Splotches container covers entire viewport */
-  #splotches-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1000;
-  }
-  
-  /* Blood splotch styles */
-  .splotch {
-    position: absolute;
-    background: rgba(255, 0, 0, 0.6);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    transform: rotate(30deg);
-    animation: splotchFade 2s ease-out forwards;
-  }
-  
-  @keyframes splotchFade {
-    0% { opacity: 1; }
-    100% { opacity: 0; }
-  }
-  
-  /* Style for the "View Painting" and "Return to Safe" buttons */
-  #btn-view-painting, #btn-return-safe {
-    margin-top: 20px;
-    padding: 10px 15px;
-    font-size: 1em;
-    cursor: pointer;
-    background-color: #555;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    transition: background-color 0.3s;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  #btn-view-painting:hover, #btn-return-safe:hover {
-    background-color: #666;
-  }
+/* Main Container - Preserve fadeIn animation from original */
+.container {
+  width: 320px;
+  margin: 20px auto;
+  background-color: rgba(20, 20, 30, 0.8); /* Dark background with transparency */
+  border: 2px solid #00FFFF; /* Cyan border */
+  box-shadow: 0 0 15px #00FFFF; /* Cyan glow */
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+  opacity: 0.1; /* Start nearly invisible */
+  animation: fadeIn 3s ease-in-out forwards; /* Keep original fade animation */
+}
+
+/* Scene styling */
+#scene {
+  text-align: center;
+}
+
+/* Headings */
+h1, h2 {
+  color: #00FFFF;
+  text-shadow: 0 0 10px #00FFFF, 0 0 15px #00FFFF;
+  margin-bottom: 20px;
+}
+
+/* Regular text */
+p {
+  color: #00FFFF; /* Cyan text */
+  text-shadow: 0 0 5px #00FFFF; /* Subtle glow */
+  font-size: 18px;
+}
+
+/* Emphasized text with pink neon */
+em {
+  color: #ff00ff; /* Pink */
+  text-shadow: 0 0 8px #ff00ff;
+  font-style: italic;
+}
+
+/* Updated Choices Styling - Column layout from styles.css */
+.choices {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers horizontally */
+  justify-content: center; /* Centers vertically */
+  gap: 10px;
+  width: 100%; /* Full width of container */
+}
+
+/* Dynamic height buttons that adjust to content */
+.choices button {
+  width: 220px;
+  min-height: 45px; /* Minimum height instead of fixed height */
+  padding: 12px 15px; /* Increased padding for more space */
+  font-size: 1.1rem;
+  background-color: #ff00ff; /* Pink background */
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-shadow: 0 0 10px #ff00ff;
+  box-shadow: 0 0 15px #ff00ff;
+  transition: all 0.3s ease;
+  margin: 5px auto; /* Auto horizontal margin centers the button */
+  display: flex; /* Using flexbox for better text centering */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 1.3; /* Better line spacing for wrapped text */
+  word-wrap: break-word; /* Allow long words to break */
+  white-space: normal; /* Allow text wrapping */
+}
+
+.choices button:hover {
+  background-color: #00FFFF; /* Cyan on hover */
+  color: #111;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00FFFF;
+}
+
+.choices button:active {
+  transform: scale(1.05) translateY(2px);
+  box-shadow: 0 0 10px #00FFFF;
+}
+
+/* Sanity meter styling */
+.sanity-meter {
+  margin-bottom: 20px;
+}
+
+.sanity-meter label {
+  color: #00ff88; /* Neon green */
+  text-shadow: 0 0 8px #00ff88;
+  font-size: 18px;
+}
+
+#sanity-bar {
+  width: 100%;
+  background-color: #222;
+  border: 1px solid #00FFFF;
+  height: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 5px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+#sanity-fill {
+  height: 100%;
+  width: 80%; /* starting at 80% sanity */
+  background: linear-gradient(to right, #00ff88, #00FFFF); /* Gradient from green to cyan */
+  transition: width 0.5s, background-color 0.5s;
+}
+
+/* Flash effect on wrong input */
+.flash {
+  animation: flashRed 0.3s;
+}
+
+/* Preserve the original fadeIn animation */
+@keyframes fadeIn {
+  from { opacity: 0.05; }
+  to { opacity: 1; }
+}
+
+@keyframes flashRed {
+  0% { background-color: #f00; box-shadow: 0 0 20px #f00; }
+  100% { background-color: transparent; }
+}
+
+/* Low sanity effects applied only to the keypad keys */
+.low-sanity #keypad .key {
+  animation: jitter 0.5s infinite;
+  border-color: #ff3333;
+}
+
+@keyframes jitter {
+  0% { transform: translate(0px, 0px); }
+  25% { transform: translate(2px, -2px); }
+  50% { transform: translate(-2px, 2px); }
+  75% { transform: translate(2px, 2px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+/* Bleeding effect when sanity is very low */
+.bleeding {
+  position: relative;
+}
+
+.bleeding::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255,0,0,0.3);
+  pointer-events: none;
+  animation: bleed 0.5s infinite;
+  border-radius: 10px;
+}
+
+@keyframes bleed {
+  0% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+  100% { opacity: 0.3; }
+}
+
+/* Low sanity warning text styling with cyberpunk glitch effect */
+.warning {
+  position: absolute;
+  font-size: 1.8em;
+  color: #ff3333;
+  font-family: 'Creepster', cursive;
+  text-shadow: 0 0 10px #ff3333, 2px 0 0 rgba(255,0,255,0.7), -2px 0 0 rgba(0,255,255,0.7);
+  opacity: 1;
+  z-index: 10;
+  animation: glitch 0.3s infinite alternate;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* Fade-out animation for the warning */
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.fade-out {
+  animation: fadeOut 3s forwards;
+}
+
+/* Splotches container covers entire viewport */
+#splotches-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Blood splotch styles - enhanced with neon effect */
+.splotch {
+  position: absolute;
+  background: rgba(255, 0, 0, 0.6);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  transform: rotate(30deg);
+  animation: splotchFade 2s ease-out forwards;
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
+  mix-blend-mode: screen;
+}
+
+@keyframes splotchFade {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Floating Orbs Animation */
+@keyframes floatOrbs {
+  0% { transform: scale(1) translateY(0); }
+  100% { transform: scale(1.2) translateY(20px); }
+}
+
+/* Add subtle edge shadow for depth */
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.3);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+/* Particles for extra atmosphere */
+.particle {
+  position: absolute;
+  background-color: cyan;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: particleFade 3s ease-out forwards;
+  z-index: 0;
+}
+
+@keyframes particleFade {
+  to { opacity: 0; transform: translateY(-200px); }
+}

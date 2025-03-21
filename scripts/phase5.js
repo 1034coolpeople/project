@@ -89,9 +89,8 @@ function collectFlashlight() {
  const flashlightInventoryItem = document.createElement("div")
  flashlightInventoryItem.className = "inventory-item"
  flashlightInventoryItem.innerHTML = `
-         <div class="inventory-item-icon flashlight-icon"/>
+         <div class="inventory-item-icon flashlight-icon">
          </div>
-         </div
          <span>Flashlight</span>
      `
     
@@ -221,14 +220,43 @@ document.getElementById("unlockBtn").addEventListener("click", function() {
      body.classList.remove("flashing");
      body.style.background = "url('#') no-repeat center center";
      body.style.backgroundSize = "cover";
-    
+     
+     // IMPORTANT: Revert to original styling when Nate wakes up
+     revertToOriginalStyle();
+     
      showText();
  }, 4000);
 });
 
 
-// Initialize the game
-init()
+// Function to revert to original styling when Nate wakes up
+function revertToOriginalStyle() {
+  // Add class to body to override the cyberpunk styling
+  document.body.classList.add('original-style');
+  
+  // Hide the neon orbs
+  const neonOrbs = document.querySelector('.neon-orbs');
+  if (neonOrbs) {
+    neonOrbs.style.display = 'none';
+  }
+  
+  // Hide the game elements
+  const gameContainer = document.querySelector('.game-container');
+  if (gameContainer) {
+    gameContainer.style.display = 'none';
+  }
+  
+  // Reset body styles to match original
+  document.body.style.fontFamily = 'Arial, sans-serif';
+  document.body.style.color = 'white';
+  document.body.style.backgroundColor = '#222';
+  
+  // Apply a background that matches the original ending
+  document.body.style.display = 'flex';
+  document.body.style.justifyContent = 'center';
+  document.body.style.alignItems = 'center';
+  document.body.style.height = '100vh';
+}
 
 
 // Typewriter Effect
@@ -236,7 +264,7 @@ function showText() {
  let textElement = document.getElementById("text");
  textElement.style.display = "block";
  textElement.innerHTML = "";
- let text = ["Nate, Nate, NATE", "Its a miracle. Hes awake.", "You've been in a coma since your car crash."];
+ let text = ["Nate, Nate, NATE", "It's a miracle. He's awake.", "You've been in a coma since your car crash."];
  let index = 0;
  let charIndex = 0;
  let currentText = "";
@@ -264,3 +292,7 @@ function showText() {
 
  typeWriter();
 }
+
+
+// Initialize the game
+init()

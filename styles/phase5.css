@@ -4,21 +4,56 @@ body {
     padding: 0;
     justify-content: center;
     align-items: center;
-    background-color: #222; /* Initial dark background */
+    background-color: #111; /* Darker background for cyberpunk feel */
     overflow: hidden;
     transition: background-color 2s ease-in-out;
-    font-family: Arial, sans-serif;
-    color: white;
-  }
-   /* Game Container */
-  .game-container {
+    font-family: 'Courier New', Courier, monospace; /* Matching other phases */
+    color: #00FFFF; /* Cyan text */
+}
+
+/* Background Effects - Only edge orbs, avoiding central elements */
+.neon-orbs {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -2;
+}
+
+.neon-orbs::before, .neon-orbs::after {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: floatOrbs 6s infinite alternate ease-in-out;
+}
+
+/* Left Pink Glow */
+.neon-orbs::before {
+    background: radial-gradient(circle, rgba(255, 0, 255, 0.8), transparent);
+    top: 20%;
+    left: -10%;
+}
+
+/* Right Blue Glow */
+.neon-orbs::after {
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.8), transparent);
+    top: 50%;
+    right: -10%;
+}
+
+/* Game Container */
+.game-container {
     display: flex;
     width: 100%;
     height: 100vh;
     position: relative;
-  }
-   /* Box Styling */
-  .door-container {
+}
+
+/* Door Container Styling - Cyberpunk version */
+.door-container {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -28,34 +63,47 @@ body {
     height: 400px;
     background: url('#') no-repeat center center;
     background-size: cover;
-    border: 2px solid white;
-    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+    border: 2px solid #00FFFF; /* Cyan border */
+    box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.5); /* Cyan glow */
     transition: transform 0.5s ease-in-out, opacity 1s ease-in-out;
     z-index: 100;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
-   /* Button Styling */
-  button {
-    padding: 10px 20px;
+}
+
+/* Button Styling - Cyberpunk version */
+button {
+    width: 180px;
+    min-height: 45px;
+    padding: 12px 15px;
     font-size: 16px;
     cursor: pointer;
-    border: none;
-    background: white;
-    color: black;
-    border-radius: 5px;
-    transition: 0.3s;
-  }
-   button:hover {
-    background: gray;
+    background-color: #ff00ff; /* Pink background */
     color: white;
-  }
-   /* Shake While Shrinking Effect */
-  .disappear {
+    border: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px #ff00ff;
+    box-shadow: 0 0 15px #ff00ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button:hover {
+    background-color: #00FFFF; /* Cyan on hover */
+    color: #111;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #00FFFF;
+}
+
+/* Shake While Shrinking Effect */
+.disappear {
     animation: shakeAndShrink 1.5s forwards, rapidShake 0.1s infinite;
-  }
-   @keyframes shakeAndShrink {
+}
+
+@keyframes shakeAndShrink {
     0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
     10% { transform: translate(-50%, -50%) scale(0.9) rotate(-2deg); }
     20% { transform: translate(-50%, -50%) scale(0.8) rotate(2deg); }
@@ -67,103 +115,132 @@ body {
     80% { transform: translate(-50%, -50%) scale(0.2) rotate(1deg); }
     90% { transform: translate(-50%, -50%) scale(0.1) rotate(0deg); }
     100% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 0; }
-  }
-   /* Flashing Effect */
-  .flashing {
+}
+
+/* Flashing Effect */
+.flashing {
     animation: flash 0.2s alternate infinite;
-  }
-   @keyframes flash {
+}
+
+@keyframes flash {
     0% { background-color: black; }
     100% { background-color: white; }
-  }
-   /* Text after Nate wakes up */
-  #text {
+}
+
+/* Text after Nate wakes up */
+#text {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 24px;
-    color: white;
+    color: white; /* Keep this white for contrast */
     text-align: center;
     z-index: 200;
     width: 80%;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-  }
-   /* Game Scene */
-  .game-scene {
+    /* No cyberpunk styling here as this will be shown after reverting to original style */
+}
+
+/* Game Scene */
+.game-scene {
     position: relative;
     background-color: #111;
     overflow: hidden;
     flex: 1;
     height: 100%;
-  }
-   /* Inventory Panel */
-  .inventory-panel {
+}
+
+/* Inventory Panel - Cyberpunk styling */
+.inventory-panel {
     width: 250px;
-    background-color: #333;
+    background-color: rgba(30, 30, 40, 0.8); /* Darker with transparency */
     padding: 20px;
     display: flex;
     flex-direction: column;
     height: 100vh;
     box-sizing: border-box;
-  }
-   .inventory-panel h2 {
+    border-left: 1px solid #00FFFF; /* Cyan border */
+    box-shadow: -5px 0 15px rgba(0, 255, 255, 0.2); /* Cyan glow */
+}
+
+.inventory-panel h2 {
     margin-bottom: 20px;
     text-align: center;
-    border-bottom: 1px solid #555;
+    border-bottom: 1px solid #00FFFF; /* Cyan border */
     padding-bottom: 10px;
-  }
-   .inventory-items {
+    color: #00FFFF; /* Cyan text */
+    text-shadow: 0 0 10px #00FFFF; /* Cyan glow */
+}
+
+.inventory-items {
     display: flex;
     flex-direction: column;
     gap: 15px;
     flex-grow: 1;
     min-height: 150px;
-  }
-   .inventory-item {
-    background-color: #444;
+}
+
+.inventory-item {
+    background-color: rgba(40, 40, 50, 0.8);
+    border: 1px solid #00FFFF; /* Cyan border */
     border-radius: 5px;
     padding: 10px;
     display: flex;
     align-items: center;
     cursor: pointer;
-  }
-   .inventory-item.active {
-    background-color: #555;
-    box-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
-  }
-   .inventory-item-icon {
+    transition: all 0.3s ease;
+    color: #00FFFF; /* Cyan text */
+    text-shadow: 0 0 5px #00FFFF; /* Cyan glow */
+}
+
+.inventory-item.active {
+    background-color: rgba(0, 255, 255, 0.2); /* Cyan background when active */
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Cyan glow */
+}
+
+.inventory-item-icon {
     width: 40px;
     height: 40px;
     margin-right: 10px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-  }
-   .flashlight-icon {
+}
+
+.flashlight-icon {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFD700'%3E%3Cpath d='M9.5 6.5l1.5 1.5h5l1.5-1.5V3h-8v3.5zM18 7h-1l-1.5 1.5h-7L7 7H6c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm-6 10c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z'/%3E%3C/svg%3E");
-  }
-  
-  .brightness-meter-container {
+    filter: drop-shadow(0 0 5px #00FFFF); /* Cyan glow */
+}
+
+.brightness-meter-container {
     margin-top: 20px;
     margin-bottom: 20px;
-  }
-   .brightness-meter-container h3 {
+}
+
+.brightness-meter-container h3 {
     margin-bottom: 10px;
-  }
-   .brightness-meter {
+    color: #00FFFF; /* Cyan text */
+    text-shadow: 0 0 5px #00FFFF; /* Cyan glow */
+}
+
+.brightness-meter {
     height: 20px;
     background-color: #222;
+    border: 1px solid #00FFFF; /* Cyan border */
     border-radius: 10px;
     overflow: hidden;
-  }
-   .brightness-level {
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.3); /* Cyan glow */
+}
+
+.brightness-level {
     height: 100%;
     width: 0%;
-    background: linear-gradient(to right, #ff6b00, #ffcc00);
+    background: linear-gradient(to right, #ff00ff, #00FFFF); /* Pink to cyan gradient */
     transition: width 0.3s ease;
-  }
-   .flashlight-item {
+}
+
+.flashlight-item {
     position: absolute;
     bottom: 50px;
     right: 50px;
@@ -175,9 +252,12 @@ body {
     background-position: center;
     cursor: pointer;
     z-index: 10;
-    box-shadow: 0 0 3px rgba(255, 215, 0, 0.6);
-  }
-   .light-overlay {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6); /* Cyan glow */
+    filter: drop-shadow(0 0 5px #00FFFF); /* Additional glow effect */
+    animation: pulse 2s infinite alternate;
+}
+
+.light-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -187,4 +267,27 @@ body {
     pointer-events: none;
     transition: background-color 0.5s ease;
     z-index: 2;
-  } 
+}
+
+/* Floating Orbs Animation */
+@keyframes floatOrbs {
+    0% { transform: scale(1) translateY(0); }
+    100% { transform: scale(1.2) translateY(20px); }
+}
+
+/* Pulse animation for flashlight item */
+@keyframes pulse {
+    0% { opacity: 0.8; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Original style class for reverting to original styling when Nate wakes up */
+.original-style {
+    font-family: Arial, sans-serif !important;
+    color: white !important;
+    background-color: #222 !important;
+}
+
+.original-style .neon-orbs {
+    display: none !important;
+}
